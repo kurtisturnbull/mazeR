@@ -5,7 +5,11 @@
 #' @param cols The number of columns (grid width); default value of 4.
 #' @param rows The number of rows (grid height); default value of 4.
 #'
+#' @return A data table representing a grid for maze carving
 #' @export
+#'
+#' @examples
+#' create_grid(4, 4)
 
 create_grid <- function(cols = 4, rows = 4){
   cbind(CJ(x = 1:cols, y = 1:rows),

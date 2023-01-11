@@ -1,11 +1,19 @@
 #' Binary tree algorithm
-#' 
-#' Generates a perfect maze using a binary tree algorithm that carves west or 
-#' south of each grid cell. Must be used with a full, unmasked rectangular grid 
+#'
+#' Generates a perfect maze using a binary tree algorithm that carves west or
+#' south of each grid cell. Must be used with a full, unmasked rectangular grid
 #' object.
-#' 
+#'
 #' @param maze_grid An unmasked rectangular maze grid object.
 #' @param bias Probability of each cell carving west or south; default of 0.5.
+#'
+#' @return A data table representing a carved maze grid.
+#' @export
+#'
+#' @examples
+#' create_grid(4, 4) %>%
+#'  binary_tree(0.5)
+
 
 binary_tree <- function(maze_grid, bias = 0.5){
   maze <- maze_grid
@@ -20,27 +28,3 @@ binary_tree <- function(maze_grid, bias = 0.5){
         ][data.table::shift(north, type = 'lag') == TRUE, south := TRUE]
   return(maze)
 }
-
-#' Carve maze
-#' 
-#' Generates a maze using a specified maze-carving algorithm.
-#' 
-#' @param maze_grid An unmasked rectangular maze grid object.
-#' @param method Algorithm to carve maze.
-#' @param bias Probability of each cell carving west or south; default of 0.5
-
-carve_maze <- function(maze_grid, method, bias = 0.5){
-  if (method == "binarytree"){
-    return(binary_tree(maze_grid, bias))
-  }
-  if (method == "sidewinder"){
-    return(side_winder(maze_grid, bias))
-  }
-  if (method == "aldousbroder"){
-    maze_grid <- aldous_broder(maze_grid)
-  }
-}
-
-maze <- create_grid() %>%
-          carve_maze("binarytree")
-print(maze)
