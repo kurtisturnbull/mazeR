@@ -1,2 +1,2 @@
 # mazeR
-This is a line from RStudio
+A maze generator implemented in R.
