@@ -1,2 +1,3 @@
 # mazeR
-A maze generator implemented in R.
+A simple maze generator implemented in R.
+
